@@ -117,6 +117,9 @@ packer.startup({
 
         use({ 'vladdoster/remember.nvim', config = [[ require('remember') ]] })
 
+        -- Auto format tools
+        use({ "sbdchd/neoformat", cmd = { "Neoformat" }, config = [[require('config.neoformat')]] })
+
     end,
     config = {
         max_jobs = 16,

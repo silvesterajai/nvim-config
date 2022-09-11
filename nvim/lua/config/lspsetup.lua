@@ -54,7 +54,8 @@ require('lsp-setup').setup({
                 },
             },
         },
-    },
+	cmake = {},
+    }, -- servers
 })
 
 local lspconfig = require 'lspconfig'
