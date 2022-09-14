@@ -6,7 +6,7 @@ keymap.set({ "n", "x" }, ";", ":")
 
 -- Shortcut for faster save and quit
 keymap.set("n", "<leader>w", "<cmd>update<cr>", { silent = true, desc = "save buffer", })
-
+keymap.set("n", "<leader>q", "<cmd>quit<cr>", { silent = true, desc = "quit buffer", })
 -- Quit all opened buffers
 keymap.set("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc = "quit nvim", })
 
@@ -33,20 +33,20 @@ keymap.set({ "n", "x" }, "L", "g_")
 
 -- Edit and reload nvim config file quickly
 keymap.set("n", "<leader>ev", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
-  silent = true,
-  desc = "open init.lua",
+    silent = true,
+    desc = "open init.lua",
 })
 
 keymap.set("n", "<leader>sv", "", {
-  silent = true,
-  desc = "reload init.lua",
-  callback = function()
-    vim.cmd [[
+    silent = true,
+    desc = "reload init.lua",
+    callback = function()
+        vim.cmd [[
       update $MYVIMRC
       source $MYVIMRC
     ]]
-    vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
-  end,
+        vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
+    end,
 })
 
 -- Remove trailing whitespace characters
@@ -65,3 +65,4 @@ keymap.set('c', '<C-A>', '<HOME>')
 -- Delete the character to the right of the cursor
 keymap.set('i', '<C-D>', '<DEL>')
 
+keymap.set('n', "<leader>fm", "<cmd>:Neoformat<cr>", { desc = "format file", })

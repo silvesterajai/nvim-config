@@ -25,8 +25,15 @@ g.neoformat_cmake_cmakeformat = {
     args = { "-i" },
     replace = 1
 }
+--[[
 g.neoformat_enabled_cmake = { "cmakeformat" }
 
+g.neoformat_cpp_clangformat = {
+    exe = 'clang-format',
+    args = { '--style=file' }
+}
+vim.g.neoformat_enabled_cpp = { 'clangformat' }
+--]]
 -- auto format on save
 vim.api.nvim_exec(
     [[
