@@ -25,6 +25,15 @@ g.neoformat_cmake_cmakeformat = {
     args = { "-i" },
     replace = 1
 }
+
+-- python
+g.neoformat_python_black = {
+    exe = 'black',
+    args = { '--line-length=140' },
+    replace = 1
+}
+g.neoformat_enabled_python = { 'black' }
+
 --[[
 g.neoformat_enabled_cmake = { "cmakeformat" }
 

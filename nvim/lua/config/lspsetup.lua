@@ -54,20 +54,69 @@ require('lsp-setup').setup({
                 },
             },
         },
-	cmake = {},
+        cmake = {},
     }, -- servers
 })
 
 local lspconfig = require 'lspconfig'
+local util = require("lspconfig.util")
+
+local on_attach = function(client, bufnr)
+
+    local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+    end
+
+    -- Mappings.
+    local opts = { noremap = true, silent = true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- leaving only what I actually use...
+    buf_set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+    buf_set_keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+
+    buf_set_keymap("n", "<C-j>", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+    buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<leader>ca", "<cmd>Telescope lsp_code_actions<CR>", opts)
+    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
+
+    client.server_capabilities.document_formatting = false
+    -- Set autocommands conditional on server_capabilities
+    if client.server_capabilities.document_highlight then
+        vim.cmd([[
+			augroup lsp_document_highlight
+				autocmd! * <buffer>
+				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+			augroup END
+		]]     )
+    end
+end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 lspconfig.ccls.setup {
+    cmd = { "ccls" },
+    filetypes = { "c", "cc", "cpp", "c++", "objc", "objcpp" },
     init_options = {
-        compilationDatabaseDirectory = "build";
         index = {
             threads = 0;
         };
         clang = {
             excludeArgs = { "-frounding-math" };
         };
-    }
+    },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = util.root_pattern("compile_commands.json", ".ccls", ".git", ".vim", ".hg"),
 }
-require 'lspconfig'.ccls.setup {}
+-- lspconfig.ccls.setup {}
+
+
+require("lsp_lines").setup()
+
+vim.diagnostic.config({
+    virtual_text = false,
+})

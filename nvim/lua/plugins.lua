@@ -41,12 +41,20 @@ packer.startup({
         use { "neovim/nvim-lspconfig" }
         use { "williamboman/mason.nvim" }
         use { "williamboman/mason-lspconfig.nvim" }
+        use { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" }
+        use { "ray-x/lsp_signature.nvim" }
+        use { "folke/lsp-colors.nvim" }
+        use { "folke/lua-dev.nvim" }
         use {
             'junnplus/lsp-setup.nvim',
             requires = {
                 'neovim/nvim-lspconfig',
                 'williamboman/mason.nvim',
                 'williamboman/mason-lspconfig.nvim',
+                "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+                "ray-x/lsp_signature.nvim",
+                "folke/lsp-colors.nvim",
+                "folke/lua-dev.nvim",
             },
             config = [[require('config.lspsetup')]]
         }
@@ -67,23 +75,23 @@ packer.startup({
         }
 
         -- File search, tag search and more
-        use({ "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension" })
+        use({ "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension",
+            config = [[require('config.leaderf')]] })
 
         use {
             'nvim-telescope/telescope.nvim', cmd = 'Telescope',
-            requires = { { 'nvim-lua/plenary.nvim' } }
+            requires = { { 'nvim-lua/plenary.nvim' } },
+            config = [[require('config.telescope')]]
         }
         -- search emoji and other symbols
         use { 'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim' }
 
         -- Smoothie motions
-        use({
+        use {
             "karb94/neoscroll.nvim",
             event = "VimEnter",
-            config = function()
-                vim.defer_fn(function() require('config.neoscroll') end, 2000)
-            end
-        })
+            config = [[require('config.neoscroll')]]
+        }
 
         use { 'kyazdani42/nvim-web-devicons', event = 'VimEnter' }
 
@@ -91,6 +99,13 @@ packer.startup({
             'nvim-lualine/lualine.nvim',
             event = 'VimEnter',
             config = [[require('config.statusline')]]
+        }
+
+        use { 'ibhagwan/fzf-lua',
+            requires = {
+                'vijaymarupudi/nvim-fzf',
+                'kyazdani42/nvim-web-devicons'
+            } -- optional for icons
         }
 
         use({ "akinsho/bufferline.nvim", event = "VimEnter", config = [[require('config.bufferline')]] })
@@ -113,8 +128,8 @@ packer.startup({
             config = [[require('config.nvim-tree')]]
         }
         -- Show git change (change, delete, add) signs in vim sign column
-        use({ 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] })
-
+        use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
+        use { 'braxtons12/blame_line.nvim', config = [[require('config.blamer')]] }
         use({ 'vladdoster/remember.nvim', config = [[ require('remember') ]] })
 
         -- Auto format tools

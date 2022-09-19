@@ -1,5 +1,4 @@
 local keymap = vim.keymap
-local api = vim.api
 
 -- Save key strokes (now we do not need to press shift to enter command mode).
 keymap.set({ "n", "x" }, ";", ":")
@@ -66,3 +65,18 @@ keymap.set('c', '<C-A>', '<HOME>')
 keymap.set('i', '<C-D>', '<DEL>')
 
 keymap.set('n', "<leader>fm", "<cmd>:Neoformat<cr>", { desc = "format file", })
+
+-- LeaderF
+keymap.set('n', "<leader>ff", ":<C-U>Leaderf file --popup<cr>", { desc = "Search files in popup window", })
+keymap.set('n', '<leader>fg', ':<C-U>Leaderf rg --no-messages --popup<cr>',
+    { desc = "Grep project files in popup window", })
+keymap.set('n', '<leader>fr', ':<C-U>Leaderf mru --popup<cr>', { desc = "Search recent files", })
+
+-- Telescope
+keymap.set('n', '<leader>wt', ':Telescope <CR>', { desc = "Telescope" })
+
+-- Fuzzy search
+keymap.set('n', "<leader>fz", "<cmd>lua require('fzf-lua').files()<CR>", { desc = "fzf search" })
+
+-- Bufferline
+keymap.set('n', "<leader>bp", ':BufferLinePick <CR>', { desc = "pick buffer", })
