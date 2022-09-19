@@ -80,3 +80,6 @@ keymap.set('n', "<leader>fz", "<cmd>lua require('fzf-lua').files()<CR>", { desc 
 
 -- Bufferline
 keymap.set('n', "<leader>bp", ':BufferLinePick <CR>', { desc = "pick buffer", })
+
+-- commentary
+keymap.set('n', "<leader>cc", ':Commentary<CR>', { desc = "Comment line" })

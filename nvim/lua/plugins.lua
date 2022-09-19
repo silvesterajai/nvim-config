@@ -130,7 +130,11 @@ packer.startup({
         -- Show git change (change, delete, add) signs in vim sign column
         use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
         use { 'braxtons12/blame_line.nvim', config = [[require('config.blamer')]] }
-        use({ 'vladdoster/remember.nvim', config = [[ require('remember') ]] })
+        use { 'ethanholz/nvim-lastplace', config = [[ require('config.lastplace') ]] }
+        use {
+            'tpope/vim-commentary',
+            requires = { 'nvim-treesitter/nvim-treesitter' }
+        }
 
         -- Auto format tools
         use({ "sbdchd/neoformat", cmd = { "Neoformat" }, config = [[require('config.neoformat')]] })
