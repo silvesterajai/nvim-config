@@ -25,6 +25,7 @@ g.neoformat_cmake_cmakeformat = {
     args = { "-i" },
     replace = 1
 }
+g.neoformat_enabled_cmake = { "cmakeformat" }
 
 -- python
 g.neoformat_python_black = {
@@ -35,8 +36,6 @@ g.neoformat_python_black = {
 g.neoformat_enabled_python = { 'black' }
 
 --[[
-g.neoformat_enabled_cmake = { "cmakeformat" }
-
 g.neoformat_cpp_clangformat = {
     exe = 'clang-format',
     args = { '--style=file' }

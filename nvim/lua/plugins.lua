@@ -35,9 +35,8 @@ packer.startup({
 
         use { "navarasu/onedark.nvim", config = [[require('config.onedark')]] }
 
-        use { "onsails/lspkind-nvim" }
-
         -- nvim-lsp configuration
+        use { "onsails/lspkind-nvim" }
         use { "neovim/nvim-lspconfig" }
         use { "williamboman/mason.nvim" }
         use { "williamboman/mason-lspconfig.nvim" }
@@ -45,6 +44,7 @@ packer.startup({
         use { "ray-x/lsp_signature.nvim" }
         use { "folke/lsp-colors.nvim" }
         use { "folke/lua-dev.nvim" }
+        use { "RRethy/vim-illuminate" }
         use {
             'junnplus/lsp-setup.nvim',
             requires = {
@@ -55,9 +55,11 @@ packer.startup({
                 "ray-x/lsp_signature.nvim",
                 "folke/lsp-colors.nvim",
                 "folke/lua-dev.nvim",
+                "RRethy/vim-illuminate",
             },
             config = [[require('config.lspsetup')]]
         }
+
         use {
             'ms-jpq/coq_nvim',
             branch = 'coq',
@@ -75,8 +77,12 @@ packer.startup({
         }
 
         -- File search, tag search and more
-        use({ "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension",
-            config = [[require('config.leaderf')]] })
+        use {
+            "Yggdroot/LeaderF",
+            cmd = "Leaderf",
+            run = ":LeaderfInstallCExtension",
+            config = [[require('config.leaderf')]]
+        }
 
         use {
             'nvim-telescope/telescope.nvim', cmd = 'Telescope',
@@ -105,18 +111,13 @@ packer.startup({
             requires = {
                 'vijaymarupudi/nvim-fzf',
                 'kyazdani42/nvim-web-devicons'
-            } -- optional for icons
+            }
         }
 
-        use({ "akinsho/bufferline.nvim", event = "VimEnter", config = [[require('config.bufferline')]] })
-        use({ "nvim-zh/better-escape.vim", event = { "InsertEnter" } })
+        use { "akinsho/bufferline.nvim", event = "VimEnter", config = [[require('config.bufferline')]] }
+        use { "nvim-zh/better-escape.vim", event = { "InsertEnter" } }
         -- showing keybindings
-        use { "folke/which-key.nvim",
-            event = "VimEnter",
-            config = function()
-                vim.defer_fn(function() require('config.which-key') end, 2000)
-            end
-        }
+        use { "folke/which-key.nvim", event = "VimEnter", config = [[require('config.which-key')]]}
 
         -- show and trim trailing whitespaces
         use { 'jdhao/whitespace.nvim', event = 'VimEnter' }
@@ -130,14 +131,22 @@ packer.startup({
         -- Show git change (change, delete, add) signs in vim sign column
         use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
         use { 'braxtons12/blame_line.nvim', config = [[require('config.blamer')]] }
+        use { "tpope/vim-fugitive", config = [[require('config.fugitive')]] }
+
         use { 'ethanholz/nvim-lastplace', config = [[ require('config.lastplace') ]] }
         use {
-            'tpope/vim-commentary',
-            requires = { 'nvim-treesitter/nvim-treesitter' }
+            'numToStr/Comment.nvim',
+            requires = { 'nvim-treesitter/nvim-treesitter' },
+            config = [[require('config.comment')]]
         }
 
         -- Auto format tools
-        use({ "sbdchd/neoformat", cmd = { "Neoformat" }, config = [[require('config.neoformat')]] })
+        use { "sbdchd/neoformat", cmd = { "Neoformat" }, config = [[require('config.neoformat')]] }
+
+        -- Auto pairs
+        use { 'windwp/nvim-autopairs', config = [[require('config.autopairs')]] }
+
+        use { 'ellisonleao/glow.nvim', config = [[require('config.glow')]] }
 
     end,
     config = {

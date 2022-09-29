@@ -93,14 +93,3 @@ opt.sidescrolloff = 8 -- Horizontal Scroll Offset
 opt.completeopt   = "menuone,noselect" -- Autocompletion
 opt.shortmess:append { W = true, a = true }
 opt.undodir = vim.fn.stdpath("cache") .. "/undo"
-
--- Highlight on yank
-vim.api.nvim_exec(
-    [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]]   ,
-    false
-)

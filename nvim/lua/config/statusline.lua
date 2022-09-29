@@ -146,6 +146,7 @@ require("lualine").setup({
                 icon = ' LSP:',
                 color = { fg = colors.blue, gui = 'bold' },
             },
+            "lsp_progress"
         },
         lualine_x = {
             "encoding",
