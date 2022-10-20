@@ -117,7 +117,7 @@ packer.startup({
         use { "akinsho/bufferline.nvim", event = "VimEnter", config = [[require('config.bufferline')]] }
         use { "nvim-zh/better-escape.vim", event = { "InsertEnter" } }
         -- showing keybindings
-        use { "folke/which-key.nvim", event = "VimEnter", config = [[require('config.which-key')]]}
+        use { "folke/which-key.nvim", event = "VimEnter", config = [[require('config.which-key')]] }
 
         -- show and trim trailing whitespaces
         use { 'jdhao/whitespace.nvim', event = 'VimEnter' }
