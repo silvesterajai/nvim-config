@@ -83,3 +83,9 @@ keymap.set('n', "<leader>bp", ':BufferLinePick <CR>', { desc = "pick buffer", })
 
 -- commentary
 keymap.set('n', "<leader>cc", ':Commentary<CR>', { desc = "Comment line" })
+
+--terminal
+keymap.set("", "<leader>tt", "<cmd>ToggleTerm direction=horizontal<cr>", { desc = "toggleterm" })
+keymap.set("", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "toggleterm (float)" })
+keymap.set("", "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>", { desc = "toggleterm (vertical)" })
+keymap.set("", "<leader>tp", "<cmd>ToggleTerm direction=tab<cr>", { desc = "toggleterm (tab-persistent)" })

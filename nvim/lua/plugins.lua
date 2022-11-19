@@ -43,7 +43,7 @@ packer.startup({
         use { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" }
         use { "ray-x/lsp_signature.nvim" }
         use { "folke/lsp-colors.nvim" }
-        use { "folke/lua-dev.nvim" }
+        use { "folke/neodev.nvim" }
         use { "RRethy/vim-illuminate" }
         use {
             'junnplus/lsp-setup.nvim',
@@ -54,7 +54,7 @@ packer.startup({
                 "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
                 "ray-x/lsp_signature.nvim",
                 "folke/lsp-colors.nvim",
-                "folke/lua-dev.nvim",
+                "folke/neodev.nvim",
                 "RRethy/vim-illuminate",
             },
             config = [[require('config.lspsetup')]]
@@ -134,6 +134,7 @@ packer.startup({
         use { "tpope/vim-fugitive", config = [[require('config.fugitive')]] }
 
         use { 'ethanholz/nvim-lastplace', config = [[ require('config.lastplace') ]] }
+        -- use { 'https://git.sr.ht/~jhn/remember.nvim', config = [[ require('config.remember')]] }
         use {
             'numToStr/Comment.nvim',
             requires = { 'nvim-treesitter/nvim-treesitter' },
@@ -146,9 +147,17 @@ packer.startup({
         -- Auto pairs
         use { 'windwp/nvim-autopairs', config = [[require('config.autopairs')]] }
 
+        -- markdown render
         use { 'ellisonleao/glow.nvim', config = [[require('config.glow')]] }
 
+        -- Documentation generator
+        use { 'kkoomen/vim-doge', run = ':call doge#install()' }
+
+        -- terminal
+        use { "akinsho/toggleterm.nvim", tag = '*', config = [[require('config.toggleterm')]] }
+
     end,
+
     config = {
         max_jobs = 16,
         compile_path = packer_util.join_paths(fn.stdpath('data'), 'site', 'lua', 'packer_compiled.lua'),

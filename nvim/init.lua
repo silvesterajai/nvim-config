@@ -4,7 +4,7 @@ local api = vim.api
 local utils = require "utils"
 
 -- check if we have latest version of neovim
-local expected_ver = "0.8.0"
+local expected_ver = "0.9.0"
 local current_ver = utils.get_nvim_version()
 
 if current_ver ~= expected_ver then

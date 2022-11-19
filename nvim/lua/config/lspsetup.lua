@@ -1,3 +1,7 @@
+require("neodev").setup({
+    -- add any options here, or leave empty to use the default settings
+})
+
 local utils = require('lsp-setup.utils')
 local mappings = {
     -- Example mappings for telescope pickers
@@ -51,8 +55,7 @@ local servers = {
             },
         },
     },
-    sumneko_lua = require('lua-dev').setup({
-    }),
+    sumneko_lua = {},
     cmake = {},
 }
 
